@@ -10,8 +10,10 @@ export default class List extends Component {
   };
 
   handleChange(event) {
+    const value = event.target.name === 'assignment' ?  event.target.value : new Date().getFullYear() + event.target.value.slice(4);
+
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: value
     });
   }
 
