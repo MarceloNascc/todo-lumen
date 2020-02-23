@@ -18,6 +18,17 @@ export default class List extends Component {
     });
   }
 
+  handleAdd(event) {
+    if(this.state.task.length !== 0 && this.state.deadline !== '2020') {
+      this.props.add(this.state.task, this.state.deadline, this.props.name);
+  
+      this.setState({
+        task: '',
+        deadline:new Date().toISOString().slice(0, 10)
+      });
+    }
+  }
+
   render() {
     return (
       <div className="list">
@@ -27,7 +38,7 @@ export default class List extends Component {
             <input name="deadline" type="date" value={this.state.deadline} onChange={(event) => this.handleChange(event)} />
           </div>
 
-          <AddButton />
+          <AddButton click={ (event) => this.handleAdd(event) } />
         </div>
 
         <h2>{this.props.name}</h2>

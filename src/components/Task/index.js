@@ -1,10 +1,14 @@
 import React from 'react';
 import './style.css';
 
+function reverseStr(string) {
+  return string.split('-').reverse().join('/');
+}
+
 export default function Task(props) {
   return (
     <div className="card">
-      <p className="deadline">{ new Date(props.deadline).toLocaleDateString() }</p>
+      <p className="deadline">{ reverseStr(props.deadline) }</p>
       <p className="description">{ props.description }</p>
       
       <div className="action-group">

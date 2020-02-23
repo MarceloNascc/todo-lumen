@@ -6,59 +6,12 @@ import ToDoList from './components/ToDoList';
 
 export default class App extends Component {
   state = {
+    currentId: 0,
     buttonActive: 'TAREFAS',
     tasks: {
-      do: [
-        { 
-          id: 1,
-          deadline: '2020-02-25',
-          description: 'Do not leave space for the element. Instead, position it at a specified position relative to the screens viewport and dont move it when scrolled. When printing, position it at that fixed position on every page. This value always create a new stacking context'
-        },
-        { 
-          id: 2,
-          deadline: '2020-02-23',
-          description: 'Do not leave space for the element. Instead, position it at a s'
-        },
-        { 
-          id: 3,
-          deadline: '2020-03-03',
-          description: 'TCC 1'
-        }
-      ],
-      doing: [
-        { 
-          id: 4,
-          deadline: '2020-02-25',
-          description: 'Uma tarefa'
-        },
-        { 
-          id: 5,
-          deadline: '2020-02-23',
-          description: 'Outra tarefa tarefa'
-        },
-        { 
-          id: 6,
-          deadline: '2020-03-03',
-          description: 'TCC 1'
-        }
-      ],
-      done: [
-        { 
-          id: 7,
-          deadline: '2020-02-25',
-          description: 'Uma tarefa'
-        },
-        { 
-          id: 8,
-          deadline: '2020-02-23',
-          description: 'Outra tarefa tarefa'
-        },
-        { 
-          id: 9,
-          deadline: '2020-03-03',
-          description: 'TCC 1'
-        }
-      ]
+      do: [],
+      doing: [],
+      done: []
     }
   };
 
@@ -66,6 +19,56 @@ export default class App extends Component {
     this.setState({
       buttonActive: event.target.name
     });
+  }
+
+  handleAddTask(description, deadline, listName) {
+    switch(listName) {
+      case 'Fazer':
+        this.setState({
+          tasks: {
+            do: [{
+              id: this.state.currentId,
+              description,
+              deadline
+            }, ...this.state.tasks.do],
+            doing: [...this.state.tasks.doing],
+            done: [...this.state.tasks.done],
+          },
+          currentId: this.state.currentId + 1
+        });
+
+        break;
+
+      case 'Fazendo':
+        this.setState({
+          tasks: {
+            doing: [{
+              id: this.state.currentId,
+              description,
+              deadline
+            }, ...this.state.tasks.doing],
+            do: [...this.state.tasks.do],
+            done: [...this.state.tasks.done],
+          },
+          currentId: this.state.currentId + 1
+        });
+
+        break;
+      
+      default:
+        this.setState({
+          tasks: {
+            done: [{
+              id: this.state.currentId,
+              description,
+              deadline
+            }, ...this.state.tasks.done],
+            doing: [...this.state.tasks.doing],
+            do: [...this.state.tasks.do],
+          },
+          currentId: this.state.currentId + 1
+        });
+    }
   }
 
   render() {
@@ -82,7 +85,7 @@ export default class App extends Component {
         </div>
 
         <div className="container">
-          <ToDoList do={tasks.do} doing={tasks.doing} done={tasks.done} />
+          <ToDoList add={ (description, deadline, listName) => this.handleAddTask(description, deadline, listName) } do={tasks.do} doing={tasks.doing} done={tasks.done} />
         </div>
       </div>
     );
