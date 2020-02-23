@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
-}
+export default class App extends Component {
+  render() {
+    return (
+      <div className="app">
+        <h1 id="title">PROCESSO SELETIVO - LUMEN GAMES</h1>
 
-export default App;
+        <div className="btn-container">
+          <button>TAREFAS</button>
+          <button>CALENDÁRIO</button>
+        </div>
+
+        <div className="container"></div>
+      </div>
+    );
+  };
+}
