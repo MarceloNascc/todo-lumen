@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 
-import TransitionButton from './components/TransitionButton'
+import TransitionButton from './components/TransitionButton';
+import ToDoList from './components/ToDoList';
 
 export default class App extends Component {
   state = {
@@ -28,7 +29,9 @@ export default class App extends Component {
           <TransitionButton name="CALENDÁRIO" className={buttonActive === 'CALENDÁRIO' ? 'btn active' : 'btn'} click={(event) => this.handleClickTransition(event)} />
         </div>
 
-        <div className="container"></div>
+        <div className="container">
+          <ToDoList />
+        </div>
       </div>
     );
   }
