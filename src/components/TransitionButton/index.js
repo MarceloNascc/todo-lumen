@@ -3,6 +3,6 @@ import './style.css';
 
 export default function TransitionButton(props) {
   return (
-    <button className={props.className}>{props.name}</button>
+    <button name={props.name} className={props.className} onClick={props.click}>{props.name}</button>
   );
 }
