@@ -13,6 +13,8 @@
   padding: 10px;
 
   background-color: #FFFFFF;
+
+  overflow: auto;
 }
 
 .form {
@@ -26,12 +28,12 @@
   border-bottom: 1px solid #758E4F;
 }
 
-input {
+.form input {
   width: 90%;
   margin-bottom: 3px;
 }
 
-h2 {
+.list h2 {
   margin-top: 2px;
 
   text-align: center;
