@@ -1,0 +1,19 @@
+.btn {
+  background-color: inherit;
+
+  border-radius: 10px;
+  border: 1px solid #6DD5ED;
+
+  padding: 8px 8px;
+
+  cursor: pointer;
+}
+
+.btn:hover {
+  text-decoration: underline;
+}
+
+.active {
+  background-color: #3E808F;
+  border: 1px solid #3E808F;
+}
