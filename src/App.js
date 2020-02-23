@@ -10,8 +10,6 @@ export default class App extends Component {
   }
 
   handleClickTransition(event) {
-    event.preventDefault();
-
     this.setState({
       buttonActive: event.target.name
     });
