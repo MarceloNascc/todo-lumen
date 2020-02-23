@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './style.css';
 
+import AddButton from '../AddButton';
+
 export default class List extends Component {
   state = {
     assignment: '',
@@ -22,7 +24,7 @@ export default class List extends Component {
             <input name="deadline" type="date" value={this.state.deadline} onChange={(event) => this.handleChange(event)} />
           </div>
 
-          <button></button>
+          <AddButton />
         </div>
 
         <h2>{this.props.name}</h2>

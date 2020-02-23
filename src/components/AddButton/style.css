@@ -1,0 +1,14 @@
+.add-button {
+  height: 30px;
+  width: 30px;
+
+  border-radius: 30px;
+  border: 0px;
+  
+  background-image: url('../../assets/images/add.png');
+  background-size: cover;
+}
+
+.add-button:hover {
+  cursor: pointer;
+}

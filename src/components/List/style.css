@@ -31,21 +31,6 @@ input {
   margin-bottom: 3px;
 }
 
-.form button {
-  height: 30px;
-  width: 30px;
-
-  border-radius: 30px;
-  border: 0px;
-  
-  background-image: url('../../assets/images/add.png');
-  background-size: cover;
-}
-
-.form button:hover {
-  cursor: pointer;
-}
-
 h2 {
   margin-top: 2px;
 
