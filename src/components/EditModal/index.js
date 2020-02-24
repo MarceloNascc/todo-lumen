@@ -21,12 +21,14 @@ export default class EditModal extends Component {
   }
 
   handleUpdate(event) {
-    this.props.update(this.props.id, {
-      id: this.props.id,
-      description: this.state.description,
-      deadline: this.state.deadline,
-      status: this.props.status
-    });
+    if(this.state.description.length !== 0 && this.state.deadline !== '2020'){
+      this.props.update(this.props.id, {
+        id: this.props.id,
+        description: this.state.description,
+        deadline: this.state.deadline,
+        status: this.props.status
+      });
+    }
 
     this.props.close();
   }
