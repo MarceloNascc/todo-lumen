@@ -9,7 +9,7 @@ export default class Calendar extends Component {
     month: 0
   };
 
-  daysOnMonth(month) {
+  quantityDaysOnMonth(month) {
     const days = [30, 31];
   
     if(month !== 1) {
@@ -53,8 +53,8 @@ export default class Calendar extends Component {
 
   renderDays() {
     let days = [];
-    for(let i = 0; i < this.daysOnMonth(this.state.month); i++) {
-      days.push(<Day key={ i } number={i + 1} tasksOnDay={ this.filterByMonthAndDay(i) } month={ this.state.month } />);
+    for(let i = 0; i < this.quantityDaysOnMonth(this.state.month); i++) {
+      days.push(<Day key={ i } number={i + 1} tasksOnDay={ this.filterByMonthAndDay(i) } />);
     }
 
     return days;
