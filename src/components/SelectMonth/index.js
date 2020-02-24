@@ -8,8 +8,8 @@ export default function SelectMonth(props) {
     borderRadius: '5px',
     marginTop: '5px',
     backgroundColor: '#6DD5ED',
-    width: '100px'
-
+    width: '100px',
+    padding: '0px 0px 0px 10px'
   });
 
   return (

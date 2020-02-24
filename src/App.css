@@ -45,7 +45,8 @@ span.game {
   height: 74%;
   width: 95%;
 
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   background-color: #C4F1FB;
   border-radius: 16px;

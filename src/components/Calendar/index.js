@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './style.css';
 
 import SelectMonth from '../SelectMonth';
+import Day from '../Day';
 
 export default class Calendar extends Component {
   state = {
@@ -24,10 +25,49 @@ export default class Calendar extends Component {
     });
   }
 
+  filterByMonthAndDay(day) {
+    const tasksDo = this.props.do.filter(task => {
+      const date = new Date(task.deadline);
+
+      return (date.getMonth() === this.state.month) && (date.getDate() === day);
+    });
+
+    const tasksDoing = this.props.doing.filter(task => {
+      const date = new Date(task.deadline);
+
+      return (date.getMonth() === this.state.month) && (date.getDate() === day);
+    });
+
+    const tasksDone = this.props.done.filter(task => {
+      const date = new Date(task.deadline);
+
+      return (date.getMonth() === this.state.month) && (date.getDate() === day);
+    });
+
+    return {
+      do: tasksDo,
+      doing: tasksDoing,
+      done: tasksDone
+    };
+  }
+
+  renderDays() {
+    let days = [];
+    for(let i = 0; i < this.daysOnMonth(this.state.month); i++) {
+      days.push(<Day key={ i } number={i + 1} tasksOnDay={ this.filterByMonthAndDay(i) } month={ this.state.month } />);
+    }
+
+    return days;
+  }
+
   render() {
     return (
       <div className="container-calendar">
         <SelectMonth value={ this.state.month } change={ (event) => this.handleChange(event)} />
+
+        <div className="days-month">
+          { this.renderDays() }
+        </div>
       </div>
     );
   }
