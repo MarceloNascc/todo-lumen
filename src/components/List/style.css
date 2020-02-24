@@ -8,6 +8,7 @@
 
   height: 96%;
   width: 31%;
+  min-width: 200px;
 
   box-sizing: border-box;
   padding: 10px;
