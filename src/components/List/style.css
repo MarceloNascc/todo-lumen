@@ -14,7 +14,8 @@
 
   background-color: #FFFFFF;
 
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .form {

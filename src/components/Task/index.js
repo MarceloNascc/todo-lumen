@@ -1,5 +1,9 @@
 import React from 'react';
 import './style.css';
+import { Edit } from '@material-ui/icons';
+import { Delete } from '@material-ui/icons';
+
+import ActionButton from '../ActionButton';
 
 function reverseStr(string) {
   return string.split('-').reverse().join('/');
@@ -24,8 +28,8 @@ export default function Task(props) {
         </div>
 
         <div className="btn-group2">
-          <button className="edit-button"></button>
-          <button className="remove-button"></button>
+          <ActionButton color="#d1bb30" icon={ <Edit /> } />
+          <ActionButton color="#AA0001" icon={ <Delete /> } />
         </div>
       </div>
     </div>
