@@ -6,6 +6,7 @@ import { Delete } from '@material-ui/icons';
 
 import ActionButton from '../ActionButton';
 import RadioButton from '../RadioButton';
+import EditModal from '../EditModal';
 
 function reverseStr(string) {
   return string.split('-').reverse().join('/');
@@ -13,7 +14,8 @@ function reverseStr(string) {
 
 export default class Task extends Component {
   state = {
-    radioValue: ''
+    radioValue: '',
+    modalIsOpen: false
   }
 
   componentDidMount() {
@@ -49,6 +51,18 @@ export default class Task extends Component {
     this.props.remove(this.props.id, this.props.status);
   }
 
+  handleOpenModal(event) {
+    this.setState({
+      modalIsOpen: true
+    });
+  }
+
+  handleCloseModal(event) {
+    this.setState({
+      modalIsOpen: false
+    });
+  }
+
   render() {
     return (
       <div className="card">
@@ -63,9 +77,11 @@ export default class Task extends Component {
           </RadioGroup>
   
           <div className="btn-group2">
-            <ActionButton color="#d1bb30" icon={ <Edit /> } />
+            <ActionButton color="#d1bb30" icon={ <Edit /> } click={ (event) => this.handleOpenModal(event) } />
             <ActionButton color="#AA0001" icon={ <Delete /> } click={ (event) => this.handleRemove(event) } />
           </div>
+
+          <EditModal update={ this.props.update } id={ this.props.id } status={ this.props.status } open={ this.state.modalIsOpen } close={ (event) => this.handleCloseModal(event) } description={ this.props.description } deadline={ this.props.deadline } />
         </div>
       </div>
     );

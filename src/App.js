@@ -106,6 +106,59 @@ export default class App extends Component {
     }
   }
 
+  handleUpdateTask(id, listName, newTask) {
+    switch(listName) {
+      case 'Fazer':
+        this.setState({
+          tasks: {
+            do: this.state.tasks.do.map(task => {
+              if(task.id !== id) {
+                return task;
+              } else {
+                return newTask;
+              }
+            }),
+            doing: [...this.state.tasks.doing],
+            done: [...this.state.tasks.done],
+          }
+        });
+
+        break;
+
+      case 'Fazendo':
+        this.setState({
+          tasks: {
+            doing: this.state.tasks.doing.map(task => {
+              if(task.id !== id) {
+                return task;
+              } else {
+                return newTask;
+              }
+            }),
+            do: [...this.state.tasks.do],
+            done: [...this.state.tasks.done],
+          }
+        });
+
+        break;
+      
+      default:
+        this.setState({
+          tasks: {
+            done: this.state.tasks.done.map(task => {
+              if(task.id !== id) {
+                return task;
+              } else {
+                return newTask;
+              }
+            }),
+            doing: [...this.state.tasks.doing],
+            do: [...this.state.tasks.do],
+          }
+        });
+    }
+  }
+
   render() {
     const buttonActive = this.state.buttonActive;
     const tasks = this.state.tasks;
@@ -120,7 +173,7 @@ export default class App extends Component {
         </div>
 
         <div className="container">
-          <ToDoList remove={ (id, listName) => this.handleRemoveTask(id, listName) } add={ (description, deadline, listName) => this.handleAddTask(description, deadline, listName) } do={tasks.do} doing={tasks.doing} done={tasks.done} />
+          <ToDoList update={ (id, listName, newTask) => this.handleUpdateTask(id, listName, newTask) } remove={ (id, listName) => this.handleRemoveTask(id, listName) } add={ (description, deadline, listName) => this.handleAddTask(description, deadline, listName) } do={tasks.do} doing={tasks.doing} done={tasks.done} />
         </div>
       </div>
     );
