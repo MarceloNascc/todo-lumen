@@ -52,7 +52,7 @@ export default class Task extends Component {
           </RadioGroup>
   
           <div className="btn-group2">
-            <ActionButton color="#d1bb30" icon={ <Edit /> } click={ (event) => this.handleOpenModal(event) } />
+            <ActionButton color="#2C2C54" icon={ <Edit /> } click={ (event) => this.handleOpenModal(event) } />
             <ActionButton color="#AA0001" icon={ <Delete /> } click={ (event) => this.handleRemove(event) } />
           </div>
 

@@ -48,6 +48,6 @@ span.game {
   overflow-y: auto;
   overflow-x: hidden;
 
-  background-color: #C4F1FB;
+  /* background-color: #C4F1FB; */
   border-radius: 16px;
 }
