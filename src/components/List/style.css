@@ -8,10 +8,12 @@
 
   height: 96%;
   width: 31%;
-  min-width: 200px;
+  min-width: 280px;
+  min-height: 280px;
 
   box-sizing: border-box;
   padding: 10px;
+  margin-bottom: 10px;
 
   background-color: #FFFFFF;
 
@@ -37,4 +39,16 @@
   border-bottom: 1px solid #758E4F;
 
   font-size: 1.2em;
+}
+
+@media (max-width: 800px) {
+  .list {
+    width: 46%;
+  }
+}
+
+@media (max-width: 600px) {
+  .list {
+    width: 93%;
+  }
 }
