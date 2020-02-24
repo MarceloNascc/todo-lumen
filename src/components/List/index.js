@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import TextField from '@material-ui/core/TextField';
 import { AddCircle } from '@material-ui/icons';
 
 import ActionButton from '../ActionButton'; //usado como addButton
@@ -31,12 +32,17 @@ export default class List extends Component {
   }
 
   render() {
+    const inputStyle = {
+      width: '98%',
+      marginBottom: '5px'
+    };
+
     return (
       <div className="list">
         <div className="form">
           <div className="inputs">
-            <input name="task" type="text" placeholder='Qual a tarefa?' value={this.state.task} onChange={(event) => this.handleChange(event)} />
-            <input name="deadline" type="date" value={this.state.deadline} onChange={(event) => this.handleChange(event)} />
+            <TextField size="small" style={inputStyle} name="task" label="Tarefa" value={ this.state.task } onChange={ (event) => this.handleChange(event) } variant="outlined" />
+            <TextField size="small" style={inputStyle} name="deadline" type="date" label="Prazo" value={ this.state.deadline } onChange={ (event) => this.handleChange(event) } variant="outlined" />
           </div>
 
           <ActionButton color="#00C000" icon={ <AddCircle /> } click={(event) => this.handleAdd(event)} />
