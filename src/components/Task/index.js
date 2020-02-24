@@ -45,6 +45,10 @@ export default class Task extends Component {
     });
   }
 
+  handleRemove(event) {
+    this.props.remove(this.props.id, this.props.status);
+  }
+
   render() {
     return (
       <div className="card">
@@ -60,7 +64,7 @@ export default class Task extends Component {
   
           <div className="btn-group2">
             <ActionButton color="#d1bb30" icon={ <Edit /> } />
-            <ActionButton color="#AA0001" icon={ <Delete /> } />
+            <ActionButton color="#AA0001" icon={ <Delete /> } click={ (event) => this.handleRemove(event) } />
           </div>
         </div>
       </div>

@@ -51,7 +51,7 @@ export default class List extends Component {
         <h2>{ this.props.name }</h2>
 
         {this.props.tasks.map((task) => (
-          <Task key={ task.id } id={ task.id } status={ this.props.name } deadline={ task.deadline } description={ task.description } />
+          <Task remove={ this.props.remove } key={ task.id } id={ task.id } status={ this.props.name } deadline={ task.deadline } description={ task.description } />
         ))}
       </div>
     );

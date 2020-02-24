@@ -4,7 +4,9 @@ import { styled } from '@material-ui/core/styles';
 
 export default function ActionButton(props) {
   const ActionButton = styled(IconButton)({
-    color: props.color
+    color: props.color,
+    height: '50%',
+    width: '15%'
   });
 
 
