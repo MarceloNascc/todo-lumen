@@ -65,8 +65,18 @@ export default class Calendar extends Component {
       <div className="container-calendar">
         <SelectMonth value={ this.state.month } change={ (event) => this.handleChange(event)} />
 
-        <div className="days-month">
-          { this.renderDays() }
+        <div className="container-days-subtitle">
+          <div className="days-month">
+            { this.renderDays() }
+          </div>
+
+          <div className="subtitle">
+            <ul>
+              <li id="without-tasks">Sem tarefas agendadas</li>
+              <li id="with-tasks">Você possui tarefas agendadas</li>
+              <li id="with-overdue-tasks">Algumas tarefas estão atrasadas</li>
+            </ul>
+          </div>
         </div>
       </div>
     );

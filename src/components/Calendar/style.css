@@ -19,3 +19,42 @@
   width: 80%;
   height: 80%;
 }
+
+.container-days-subtitle {
+  display: flex;
+
+  margin-top: 20px;
+}
+
+.subtitle > ul {
+  font-size: 1.5em;
+
+  margin: 0px;
+}
+
+.subtitle > ul > li {
+  margin-bottom: 8px;
+}
+
+.subtitle > ul > li#without-tasks {
+  color: #536976;
+}
+
+.subtitle > ul > li#with-tasks {
+  color: #1565C0; 
+}
+
+.subtitle > ul > li#with-overdue-tasks {
+  color: #B92B27;
+}
+
+@media(max-width: 814px) {
+  .container-days-subtitle {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: flex-end;
+
+    margin-top: 20px;
+  }
+}
