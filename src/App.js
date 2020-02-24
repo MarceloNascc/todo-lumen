@@ -8,11 +8,7 @@ export default class App extends Component {
   state = {
     currentId: 0,
     buttonActive: 'TAREFAS',
-    tasks: {
-      do: [],
-      doing: [],
-      done: []
-    }
+    listTasks: []
   };
 
   handleClickTransition(event) {
@@ -21,147 +17,63 @@ export default class App extends Component {
     });
   }
 
-  handleAddTask(description, deadline, listName) {
-    switch(listName) {
-      case 'Fazer':
-        this.setState({
-          tasks: {
-            do: [{
-              id: this.state.currentId,
-              description,
-              deadline
-            }, ...this.state.tasks.do],
-            doing: [...this.state.tasks.doing],
-            done: [...this.state.tasks.done],
-          },
-          currentId: this.state.currentId + 1
-        });
+  handleAddTask(task) {
+    task.id = this.state.currentId;
 
-        break;
-
-      case 'Fazendo':
-        this.setState({
-          tasks: {
-            doing: [{
-              id: this.state.currentId,
-              description,
-              deadline
-            }, ...this.state.tasks.doing],
-            do: [...this.state.tasks.do],
-            done: [...this.state.tasks.done],
-          },
-          currentId: this.state.currentId + 1
-        });
-
-        break;
-      
-      default:
-        this.setState({
-          tasks: {
-            done: [{
-              id: this.state.currentId,
-              description,
-              deadline
-            }, ...this.state.tasks.done],
-            doing: [...this.state.tasks.doing],
-            do: [...this.state.tasks.do],
-          },
-          currentId: this.state.currentId + 1
-        });
-    }
+    this.setState({
+      listTasks: [task, ...this.state.listTasks],
+      currentId: this.state.currentId + 1
+    });
   }
 
-  handleRemoveTask(id, listName) {
-    switch(listName) {
-      case 'Fazer':
-        this.setState({
-          tasks: {
-            do: this.state.tasks.do.filter(task => task.id !== id),
-            doing: [...this.state.tasks.doing],
-            done: [...this.state.tasks.done],
-          }
-        });
-
-        break;
-
-      case 'Fazendo':
-        this.setState({
-          tasks: {
-            doing: this.state.tasks.doing.filter(task => task.id !== id),
-            do: [...this.state.tasks.do],
-            done: [...this.state.tasks.done],
-          }
-        });
-
-        break;
-      
-      default:
-        this.setState({
-          tasks: {
-            done: this.state.tasks.done.filter(task => task.id !== id),
-            doing: [...this.state.tasks.doing],
-            do: [...this.state.tasks.do],
-          }
-        });
-    }
+  handleRemoveTask(id) {
+    this.setState({
+      listTasks: this.state.listTasks.filter(task => task.id !== id)
+    });
   }
 
-  handleUpdateTask(id, listName, newTask) {
-    switch(listName) {
-      case 'Fazer':
-        this.setState({
-          tasks: {
-            do: this.state.tasks.do.map(task => {
-              if(task.id !== id) {
-                return task;
-              } else {
-                return newTask;
-              }
-            }),
-            doing: [...this.state.tasks.doing],
-            done: [...this.state.tasks.done],
-          }
-        });
+  handleUpdateTask(id, newTask) {
+    this.setState({
+      listTasks: this.state.listTasks.map(task => {
+        if(task.id !== id) {
+          return task;
+        } else {
+          return newTask;
+        }
+      })
+    });
+  }
 
-        break;
+  handleMoveTask(id, destiny) {
+    this.setState({
+      listTasks: this.state.listTasks.map(task => {
+        if(task.id !== id) {
+          return task;
+        } else {
+          const newTask = {
+            ...task,
+            status: destiny
+          };
 
-      case 'Fazendo':
-        this.setState({
-          tasks: {
-            doing: this.state.tasks.doing.map(task => {
-              if(task.id !== id) {
-                return task;
-              } else {
-                return newTask;
-              }
-            }),
-            do: [...this.state.tasks.do],
-            done: [...this.state.tasks.done],
-          }
-        });
-
-        break;
-      
-      default:
-        this.setState({
-          tasks: {
-            done: this.state.tasks.done.map(task => {
-              if(task.id !== id) {
-                return task;
-              } else {
-                return newTask;
-              }
-            }),
-            doing: [...this.state.tasks.doing],
-            do: [...this.state.tasks.do],
-          }
-        });
-    }
+          return newTask;
+        }
+      })
+    });
   }
 
   render() {
     const buttonActive = this.state.buttonActive;
-    const tasks = this.state.tasks;
+    let tasksDo = [], tasksDoing = [], tasksDone = [];
+
+    this.state.listTasks.forEach(task => {
+      if(task.status === 'do'){
+        tasksDo.push(task);
+      } else if (task.status === 'doing') {
+        tasksDoing.push(task);
+      } else {
+        tasksDone.push(task);
+      }
+    });
 
     return (
       <div className="app">
@@ -173,7 +85,7 @@ export default class App extends Component {
         </div>
 
         <div className="container">
-          <ToDoList update={ (id, listName, newTask) => this.handleUpdateTask(id, listName, newTask) } remove={ (id, listName) => this.handleRemoveTask(id, listName) } add={ (description, deadline, listName) => this.handleAddTask(description, deadline, listName) } do={tasks.do} doing={tasks.doing} done={tasks.done} />
+          <ToDoList move={ (id, destiny) => this.handleMoveTask(id, destiny) } update={ (id, newTask) => this.handleUpdateTask(id, newTask) } remove={ (id) => this.handleRemoveTask(id) } add={ (task) => this.handleAddTask(task) } do={tasksDo} doing={tasksDoing} done={tasksDone} />
         </div>
       </div>
     );

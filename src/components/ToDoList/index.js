@@ -6,9 +6,9 @@ import List from '../List';
 export default function ToDoList(props) {
   return (
     <div className="container-todolist">
-      <List update={ props.update } remove={ props.remove } add={ props.add } name="Fazer" tasks={props.do} />
-      <List update={ props.update } remove={ props.remove } add={ props.add } name="Fazendo" tasks={props.doing} />
-      <List update={ props.update } remove={ props.remove } add={ props.add } name="Feito" tasks={props.done} />
+      <List move={ props.move } update={ props.update } remove={ props.remove } add={ props.add } name="do" tasks={props.do} />
+      <List move={ props.move } update={ props.update } remove={ props.remove } add={ props.add } name="doing" tasks={props.doing} />
+      <List move={ props.move } update={ props.update } remove={ props.remove } add={ props.add } name="done" tasks={props.done} />
     </div>
   );
 }

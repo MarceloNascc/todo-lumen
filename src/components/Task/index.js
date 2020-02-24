@@ -14,41 +14,16 @@ function reverseStr(string) {
 
 export default class Task extends Component {
   state = {
-    radioValue: '',
+    radioValue: this.props.status,
     modalIsOpen: false
   }
 
-  componentDidMount() {
-    switch(this.props.status) {
-      case 'Fazer':
-        this.setState({
-          radioValue: 'do'
-        });
-
-        break;
-      
-      case 'Fazendo':
-        this.setState({
-          radioValue: 'doing'
-        });
-
-        break;
-
-      default:
-        this.setState({
-          radioValue: 'done'
-        });
-    }
-  }
-
   handleChange(event) {
-    this.setState({
-      radioValue: event.target.value
-    });
+    this.props.move(this.props.id, event.target.value);
   }
 
   handleRemove(event) {
-    this.props.remove(this.props.id, this.props.status);
+    this.props.remove(this.props.id);
   }
 
   handleOpenModal(event) {
@@ -70,7 +45,7 @@ export default class Task extends Component {
         <p className="description">{ this.props.description }</p>
         
         <div className="action-group">
-          <RadioGroup row name={ this.props.id } value={ this.state.radioValue } onChange={ (event) => this.handleChange(event) } >
+          <RadioGroup row name={ `${this.props.id}` } value={ this.state.radioValue } onChange={ (event) => this.handleChange(event) } >
             <RadioButton value="do" label="Fazer" />
             <RadioButton value="doing" label="Fazendo" />
             <RadioButton value="done" label="Feito" />

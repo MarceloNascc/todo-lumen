@@ -8,12 +8,12 @@ import Task from '../Task';
 
 export default class List extends Component {
   state = {
-    task: '',
+    description: '',
     deadline: new Date().toISOString().slice(0, 10)
   };
 
   handleChange(event) {
-    const value = event.target.name === 'task' ? event.target.value : new Date().getFullYear() + event.target.value.slice(4);
+    const value = event.target.name === 'description' ? event.target.value : new Date().getFullYear() + event.target.value.slice(4);
 
     this.setState({
       [event.target.name]: value
@@ -21,13 +21,30 @@ export default class List extends Component {
   }
 
   handleAdd(event) {
-    if (this.state.task.length !== 0 && this.state.deadline !== '2020') {
-      this.props.add(this.state.task, this.state.deadline, this.props.name);
+    if (this.state.description.length !== 0 && this.state.deadline !== '2020') {
+      this.props.add({
+        description: this.state.description,
+        deadline: this.state.deadline,
+        status: this.props.name
+      });
 
       this.setState({
-        task: '',
+        description: '',
         deadline: new Date().toISOString().slice(0, 10)
       });
+    }
+  }
+
+  getNameList(string) {
+    switch(string) {
+      case 'do':
+        return 'Fazer';
+      
+      case 'doing':
+        return 'Fazendo';
+
+      default:
+        return 'Feito';
     }
   }
 
@@ -41,17 +58,17 @@ export default class List extends Component {
       <div className="list">
         <div className="form">
           <div className="inputs">
-            <TextField size="small" style={inputStyle} name="task" label="Tarefa" value={ this.state.task } onChange={ (event) => this.handleChange(event) } variant="outlined" />
+            <TextField size="small" style={inputStyle} name="description" label="Tarefa" value={ this.state.description } onChange={ (event) => this.handleChange(event) } variant="outlined" />
             <TextField size="small" style={inputStyle} name="deadline" type="date" label="Prazo" value={ this.state.deadline } onChange={ (event) => this.handleChange(event) } variant="outlined" />
           </div>
 
           <ActionButton color="#00C000" icon={ <AddCircle /> } click={(event) => this.handleAdd(event)} />
         </div>
 
-        <h2>{ this.props.name }</h2>
+        <h2>{ this.getNameList(this.props.name) }</h2>
 
         {this.props.tasks.map((task) => (
-          <Task update={ this.props.update } remove={ this.props.remove } key={ task.id } id={ task.id } status={ this.props.name } deadline={ task.deadline } description={ task.description } />
+          <Task move={ this.props.move } update={ this.props.update } remove={ this.props.remove } key={ task.id } id={ task.id } status={ task.status } deadline={ task.deadline } description={ task.description } />
         ))}
       </div>
     );
