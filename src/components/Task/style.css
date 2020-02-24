@@ -37,23 +37,6 @@
   width: 100%;
 }
 
-.radio-group {
-  display: flex;
-  align-items: center;
-
-  align-self: flex-start;
-
-  width: 60%;
-}
-
-.radio-group input[type="radio"] {
-  margin: 1px;
-}
-
-.radio-group input[type="radio"]:not(:last-child) {
-  margin-right: 10px;
-}
-
 .btn-group2 {
   display: flex;
 }
