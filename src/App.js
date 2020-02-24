@@ -3,6 +3,7 @@ import './App.css';
 
 import TransitionButton from './components/TransitionButton';
 import ToDoList from './components/ToDoList';
+import Calendar from './components/Calendar';
 
 export default class App extends Component {
   state = {
@@ -85,7 +86,11 @@ export default class App extends Component {
         </div>
 
         <div className="container">
-          <ToDoList move={ (id, destiny) => this.handleMoveTask(id, destiny) } update={ (id, newTask) => this.handleUpdateTask(id, newTask) } remove={ (id) => this.handleRemoveTask(id) } add={ (task) => this.handleAddTask(task) } do={tasksDo} doing={tasksDoing} done={tasksDone} />
+          { this.state.buttonActive === 'TAREFAS' ? (
+            <ToDoList move={ (id, destiny) => this.handleMoveTask(id, destiny) } update={ (id, newTask) => this.handleUpdateTask(id, newTask) } remove={ (id) => this.handleRemoveTask(id) } add={ (task) => this.handleAddTask(task) } do={tasksDo} doing={tasksDoing} done={tasksDone} />
+          ) : (
+            <Calendar do={tasksDo} doing={tasksDoing} done={tasksDone} />
+          )}
         </div>
       </div>
     );
