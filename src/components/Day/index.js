@@ -5,8 +5,8 @@ import { styled } from '@material-ui/core/styles';
 import DayTasksModal from '../DayTasksModal';
 
 function existTaskLate(tasks) {
-  for (const task of tasks) {
-    const taskDate = new Date(task.deadline);
+  if(tasks.length !== 0) {
+    const taskDate = new Date(tasks[0].deadline);
     const currentDate = new Date();
 
     if(taskDate.getMonth() < currentDate.getMonth() || ((taskDate.getDate() + 1 < currentDate.getDate()) && (taskDate.getMonth() === currentDate.getMonth()))) {
