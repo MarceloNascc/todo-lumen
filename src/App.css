@@ -15,7 +15,6 @@ h1#title {
 
   border-radius: 5px;
   
-  font-family: monospace;
   font-weight: normal;
   color: #363636;
 }
@@ -48,6 +47,5 @@ span.game {
   overflow-y: auto;
   overflow-x: hidden;
 
-  /* background-color: #C4F1FB; */
   border-radius: 16px;
 }

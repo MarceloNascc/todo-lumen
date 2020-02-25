@@ -1,68 +1,72 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# PROCESSO SELETIVO - LUMEN GAMES
 
-## Available Scripts
+Este projeto faz parte do processo seletivo para o estágio em Front-end.
 
-In the project directory, you can run:
+### PROTOTIPO
 
-### `npm start`
+Para a prototipação foi utilizado o [Figma](<https://www.figma.com>).
+[PROTÓTIPO](<https://www.figma.com/file/2JYOruSG34lGNfpGkkHohJ/Lumen-Games-To-do-list?node-id=0%3A1>)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### GIF DO RESULTADO FINAL
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![](/src/assets/img/todo.gif)
 
-### `npm test`
+### ESTRUTURAÇÃO DOS COMPONENTES
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+├── src/                    # Incluso todo o código
+    ├── index.css           # Arquivo de estilização mais geral
+    ├── index.js            # Insere o componente principal no html
+    ├── App.css             # Arquivo de estilização do componente principal
+    ├── App.js              # Componente principal, cuida da exibição e transição dos dois componentes que implementam o que foi pedido no projeto. Nele estão contidos outros três componentes: TransitionButton, ToDoList e Calendar.
+    ├── components/         # Incluso todos os componentes (cada componente está dentro de uma pasta que tem o seu nome. Na pasta podem ser encontrados dois arquivos: index.js que exporta o componente e style.css que estiliza o componente. Em alguns casos esse padrão é quebrado e a pasta só contém o index.js. Isso acontece em alguns componentes criados a partir do Material UI).
+        ├── TransitionButton# Componente que implementa um botão para fazer a trasição entre componentes.
+        ├── ToDoList        # Componente que implementa a parte do to do list, usando três listas: Fazer (do), Fazendo (doing) e Feito (done). Nele está contido outro componente: List.
+        ├── List            # Componente que implementa uma das listas, podendo ser a 'do', ou 'doing'... Nele estão contidos outros dois componentes: ActionButton e Task.
+        ├── ActionButton    # Componente que implementa um botão de ação, como salvar, excluir e atualizar.
+        ├── Task            # Componente que implementa um card com uma tarefa. Nele estão contidos outros três componentes: ActionButton, RadioButton e EditModal.
+        ├── RadioButton     # Componente que implementa um radio button para representar uma List.
+        ├── EditModal       # Componente que implementa um modal para fazer a atualização de uma tarefa. Nele está contido outro componente: ActionButton.
+        ├── Calendar        # Componente que implementa a parte do calendário. Nele estão contidos outros dois componentes: SelectMonth e Day.
+        ├── SelectMonth     # Componente que implementa um campo select para a seleção do mês que será visualizado.
+        ├── Day             # Componente que implementa a visualização de um dia no mês. Nele está contido outro componente: DayTasksModal.
+        ├── DayTasksModal   # Componente que implementa a visualização das tarefas de um dia.
 
-### `npm run build`
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Instalação
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+O projeto requer os seguintes recursos instalados:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[Node.js]
 
-### `npm run eject`
+[NPM]
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Instale as dependências e execute o aplicativo da seguinte maneira:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```sh
+$ git clone https://github.com/MarceloNascc/todo-lumen
+$ cd todo-lumen
+$ npm install
+$ npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Scripts Disponíveis
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+No diretório do projeto, você pode executar:
 
-## Learn More
+#### `npm start`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Executa a aplicação no modo de desenvolvimento.<br>
+Uma aba do navegador será aberta em [http://localhost:3000](http://localhost:3000).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### `npm run build`
 
-### Code Splitting
+Faz a construção da aplicação para produção na pasta `build`.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+#### `npm run eject`
 
-### Analyzing the Bundle Size
+Faz a ejeção do react-create-app.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+[node.js]: <http://nodejs.org>  
+[NPM]: <https://www.npmjs.com/>

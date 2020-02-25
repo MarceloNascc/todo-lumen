@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Martel&display=swap');
+
 body {
   margin: 0;
-  font-family: monospace;
+  font-family: 'Martial';
   background: linear-gradient(to bottom, #FFFFFF, #a6efff);
 }
